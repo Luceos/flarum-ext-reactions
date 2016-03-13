@@ -23,7 +23,7 @@ return Migration::createTable(
 );
 */
 
-namespace Flarum\Reactions\Migration;
+namespace Jordanjay29\Reactions\Migration;
 
 use Flarum\Database\AbstractMigration;
 use Illuminate\Database\Schema\Blueprint;
