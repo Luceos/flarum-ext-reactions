@@ -59,7 +59,7 @@ class SendNotificationWhenPostIsReactedTo
     public function registerNotificationType(ConfigureNotificationTypes $event)
     {
         //#DEBUG $event->add(PostLikedBlueprint::class, PostBasicSerializer::class, ['alert']);
-        $event->add(PostReactedTodBlueprint::class, PostBasicSerializer::class, ['alert']);
+        $event->add(PostReactedToBlueprint::class, PostBasicSerializer::class, ['alert']);
     }
 
     /**
