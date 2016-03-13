@@ -22,7 +22,7 @@ use JordanJay29\Reactions\Event\PostWasReactedTo;
 //#DEBUG use Flarum\Likes\Event\PostWasUnliked;
 use JordanJay29\Reactions\Event\PostWasUnreactedTo;
 //#DEBUG use Flarum\Likes\Notification\PostLikedBlueprint;
-use JordanJay29\Reactions\Notification\PostReactedTodBlueprint;
+use JordanJay29\Reactions\Notification\PostReactedToBlueprint;
 use Illuminate\Contracts\Events\Dispatcher;
 
 //#DEBUG class SendNotificationWhenPostIsLiked
