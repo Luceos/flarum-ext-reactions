@@ -1,25 +1,25 @@
 {
-    "name": "flarum/flarum-ext-likes",
-    "description": "Allow users to like posts.",
+    "name": "flarum/flarum-ext-reactions",
+    "description": "Allow users to react to posts.",
     "type": "flarum-extension",
     "keywords": ["discussion"],
     "license": "MIT",
     "authors": [
         {
-            "name": "Toby Zerner",
-            "email": "toby.zerner@gmail.com"
+            "name": "Jordan Schnaidt",
+            "email": "jordanschnaidt@gmail.com"
         }
     ],
     "support": {
-        "issues": "https://github.com/flarum/core/issues",
-        "source": "https://github.com/flarum/flarum-ext-likes"
+        "issues": "https://github.com/jordanjay29/flarum-ext-reactions",
+        "source": "https://github.com/jordanjay29/flarum-ext-reactions/issues"
     },
     "require": {
         "flarum/core": "^0.1.0-beta.3"
     },
     "autoload": {
         "psr-4": {
-            "Flarum\\Likes\\": "src/"
+            "Flarum\\Reactions\\": "src/"
         }
     },
     "extra": {
@@ -27,7 +27,7 @@
             "dev-master": "0.1.x-dev"
         },
         "flarum-extension": {
-            "title": "Likes",
+            "title": "Reactions",
             "icon": {
                 "name": "thumbs-o-up",
                 "backgroundColor": "#3A649D",

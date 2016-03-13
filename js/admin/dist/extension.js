@@ -1,4 +1,6 @@
-System.register('flarum/likes/main', ['flarum/extend', 'flarum/app', 'flarum/components/PermissionGrid'], function (_export) {
+System.register('flarum/reactions/main', ['flarum/extend', 'flarum/app', 'flarum/components/PermissionGrid'], function (_export) {
+
+  //#DEBUG app.initializers.add('flarum-likes', () => {
   'use strict';
 
   var extend, app, PermissionGrid;
@@ -11,13 +13,14 @@ System.register('flarum/likes/main', ['flarum/extend', 'flarum/app', 'flarum/com
       PermissionGrid = _flarumComponentsPermissionGrid['default'];
     }],
     execute: function () {
-
-      app.initializers.add('flarum-likes', function () {
+      app.initializers.add('flarum-reactions', function () {
         extend(PermissionGrid.prototype, 'replyItems', function (items) {
-          items.add('likePosts', {
+          //#DEBUG items.add('likePosts', {
+          items.add('reactToPosts', {
             icon: 'thumbs-o-up',
             label: app.translator.trans('flarum-likes.admin.permissions.like_posts_label'),
-            permission: 'discussion.likePosts'
+            //#DEBUG permission: 'discussion.likePosts'
+            permission: 'discussion.reactToPosts'
           });
         });
       });

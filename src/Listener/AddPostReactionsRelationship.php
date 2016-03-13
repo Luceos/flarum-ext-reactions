@@ -9,7 +9,8 @@
  * file that was distributed with this source code.
  */
 
-namespace Flarum\Likes\Listener;
+//#DEBUG namespace Flarum\Likes\Listener;
+namespace Flarum\Reactions\Listener;
 
 use Flarum\Api\Controller;
 use Flarum\Api\Serializer\PostSerializer;
@@ -22,7 +23,8 @@ use Flarum\Event\GetModelRelationship;
 use Flarum\Event\PrepareApiAttributes;
 use Illuminate\Contracts\Events\Dispatcher;
 
-class AddPostLikesRelationship
+//#DEBUG class AddPostLikesRelationship
+class AddPostReactionssRelationship
 {
     /**
      * @param Dispatcher $events
@@ -32,7 +34,8 @@ class AddPostLikesRelationship
         $events->listen(GetModelRelationship::class, [$this, 'getModelRelationship']);
         $events->listen(GetApiRelationship::class, [$this, 'getApiAttributes']);
         $events->listen(PrepareApiAttributes::class, [$this, 'prepareApiAttributes']);
-        $events->listen(ConfigureApiController::class, [$this, 'includeLikes']);
+        //#DEBUG $events->listen(ConfigureApiController::class, [$this, 'includeLikes']);
+        $events->listen(ConfigureApiController::class, [$this, 'includeReactions']);
     }
 
     /**
@@ -41,8 +44,10 @@ class AddPostLikesRelationship
      */
     public function getModelRelationship(GetModelRelationship $event)
     {
-        if ($event->isRelationship(Post::class, 'likes')) {
-            return $event->model->belongsToMany(User::class, 'posts_likes', 'post_id', 'user_id', 'likes');
+        //#DEBUG if ($event->isRelationship(Post::class, 'likes')) {
+        if ($event->isRelationship(Post::class, 'reactions')) {
+            //#DEBUG return $event->model->belongsToMany(User::class, 'posts_likes', 'post_id', 'user_id', 'likes');
+            return $event->model->belongsToMany(User::class, 'posts_reactions', 'post_id', 'user_id', 'reactions');
         }
     }
 
@@ -52,8 +57,10 @@ class AddPostLikesRelationship
      */
     public function getApiAttributes(GetApiRelationship $event)
     {
-        if ($event->isRelationship(PostSerializer::class, 'likes')) {
-            return $event->serializer->hasMany($event->model, UserBasicSerializer::class, 'likes');
+        //#DEBUG if ($event->isRelationship(PostSerializer::class, 'likes')) {
+        if ($event->isRelationship(PostSerializer::class, 'reactions')) {
+            //#DEBUG return $event->serializer->hasMany($event->model, UserBasicSerializer::class, 'likes');
+            return $event->serializer->hasMany($event->model, UserBasicSerializer::class, 'reactions');
         }
     }
 
@@ -63,24 +70,28 @@ class AddPostLikesRelationship
     public function prepareApiAttributes(PrepareApiAttributes $event)
     {
         if ($event->isSerializer(PostSerializer::class)) {
-            $event->attributes['canLike'] = (bool) $event->actor->can('like', $event->model);
+            //#DEBUG $event->attributes['canLike'] = (bool) $event->actor->can('like', $event->model);
+            $event->attributes['canReactTo'] = (bool) $event->actor->can('react', $event->model);
         }
     }
 
     /**
      * @param ConfigureApiController $event
      */
-    public function includeLikes(ConfigureApiController $event)
+    //#DEBUG public function includeLikes(ConfigureApiController $event)
+    public function includeReactions(ConfigureApiController $event)
     {
         if ($event->isController(Controller\ShowDiscussionController::class)) {
-            $event->addInclude('posts.likes');
+            //#DEBUG $event->addInclude('posts.likes');
+            $event->addInclude('posts.reactions');
         }
 
         if ($event->isController(Controller\ListPostsController::class)
             || $event->isController(Controller\ShowPostController::class)
             || $event->isController(Controller\CreatePostController::class)
             || $event->isController(Controller\UpdatePostController::class)) {
-            $event->addInclude('likes');
+            //#DEBUG $event->addInclude('likes');
+            $event->addInclude('reactions');
         }
     }
 }

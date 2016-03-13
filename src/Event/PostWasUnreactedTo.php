@@ -9,12 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Flarum\Likes\Event;
+//#DEBUG namespace Flarum\Likes\Event;
+namespace Flarum\Reactions\Event;
 
 use Flarum\Core\Post;
 use Flarum\Core\User;
 
-class PostWasUnliked
+//#DEBUG class PostWasUnliked
+class PostWasUnreactedTo
 {
     /**
      * @var Post

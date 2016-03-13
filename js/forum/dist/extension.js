@@ -1,4 +1,4 @@
-System.register('flarum/likes/addLikeAction', ['flarum/extend', 'flarum/app', 'flarum/components/Button', 'flarum/components/CommentPost'], function (_export) {
+System.register('flarum/reactions/addReaction', ['flarum/extend', 'flarum/app', 'flarum/components/Button', 'flarum/components/CommentPost'], function (_export) {
   'use strict';
 
   var extend, app, Button, CommentPost;
@@ -17,32 +17,41 @@ System.register('flarum/likes/addLikeAction', ['flarum/extend', 'flarum/app', 'f
         extend(CommentPost.prototype, 'actionItems', function (items) {
           var post = this.props.post;
 
-          if (post.isHidden() || !post.canLike()) return;
+          //#DEBUG if (post.isHidden() || !post.canLike()) return;
+          if (post.isHidden() || !post.canReactTo()) return;
 
-          var isLiked = app.session.user && post.likes().some(function (user) {
+          //#DEBUG let isLiked = app.session.user && post.likes().some(user => user === app.session.user);
+          var isReactedTo = app.session.user && post.reactions().some(function (user) {
             return user === app.session.user;
           });
 
-          items.add('like', Button.component({
+          //#DEBUG items.add('like',
+          items.add('reaction', Button.component({
             children: app.translator.trans(isLiked ? 'flarum-likes.forum.post.unlike_link' : 'flarum-likes.forum.post.like_link'),
             className: 'Button Button--link',
             onclick: function onclick() {
-              isLiked = !isLiked;
+              //#DEBUG isLiked = !isLiked;
+              isReactedTo = !isReactedTo;
 
-              post.save({ isLiked: isLiked });
+              //#DEBUG post.save({isLiked});
+              post.save({ isReactedTo: isReactedTo });
 
               // We've saved the fact that we do or don't like the post, but in order
               // to provide instantaneous feedback to the user, we'll need to add or
               // remove the like from the relationship data manually.
-              var data = post.data.relationships.likes.data;
-              data.some(function (like, i) {
-                if (like.id === app.session.user.id()) {
+              //#DEBUG const data = post.data.relationships.likes.data;
+              var data = post.data.relationships.reactions.data;
+              //#DEBUG data.some((like, i) => {
+              data.some(function (reaction, i) {
+                //#DEBUG if (like.id === app.session.user.id()) {
+                if (reaction.id === app.session.user.id()) {
                   data.splice(i, 1);
                   return true;
                 }
               });
 
-              if (isLiked) {
+              //#DEBUG if (isLiked) {
+              if (isReactedTo) {
                 data.unshift({ type: 'users', id: app.session.user.id() });
               }
             }
@@ -52,10 +61,11 @@ System.register('flarum/likes/addLikeAction', ['flarum/extend', 'flarum/app', 'f
     }
   };
 });;
-System.register('flarum/likes/addLikesList', ['flarum/extend', 'flarum/app', 'flarum/components/CommentPost', 'flarum/helpers/punctuateSeries', 'flarum/helpers/username', 'flarum/helpers/icon', 'flarum/likes/components/PostLikesModal'], function (_export) {
+System.register('flarum/reactions/addReactionList', ['flarum/extend', 'flarum/app', 'flarum/components/CommentPost', 'flarum/helpers/punctuateSeries', 'flarum/helpers/username', 'flarum/helpers/icon', 'flarum/reactions/components/PostReactionsModal'], function (_export) {
   'use strict';
 
-  var extend, app, CommentPost, punctuateSeries, username, icon, PostLikesModal;
+  //#DEBUG import PostLikesModal from 'flarum/likes/components/PostLikesModal';
+  var extend, app, CommentPost, punctuateSeries, username, icon, PostReactionsModal;
   return {
     setters: [function (_flarumExtend) {
       extend = _flarumExtend.extend;
@@ -69,22 +79,26 @@ System.register('flarum/likes/addLikesList', ['flarum/extend', 'flarum/app', 'fl
       username = _flarumHelpersUsername['default'];
     }, function (_flarumHelpersIcon) {
       icon = _flarumHelpersIcon['default'];
-    }, function (_flarumLikesComponentsPostLikesModal) {
-      PostLikesModal = _flarumLikesComponentsPostLikesModal['default'];
+    }, function (_flarumReactionsComponentsPostReactionsModal) {
+      PostReactionsModal = _flarumReactionsComponentsPostReactionsModal['default'];
     }],
     execute: function () {
       _export('default', function () {
         extend(CommentPost.prototype, 'footerItems', function (items) {
           var post = this.props.post;
-          var likes = post.likes();
+          //#DEBUG const likes = post.likes();
+          var reactions = post.reactions();
 
-          if (likes && likes.length) {
+          //#DEBUG if (likes && likes.length) {
+          if (reactions && reactions.length) {
             var limit = 4;
-            var overLimit = likes.length > limit;
+            //#DEBUG const overLimit = likes.length > limit;
+            var overLimit = reactions.length > limit;
 
             // Construct a list of names of users who have liked this post. Make sure the
             // current user is first in the list, and cap a maximum of 4 items.
-            var names = likes.sort(function (a) {
+            //#DEBUG const names = likes.sort(a => a === app.session.user ? -1 : 1)
+            var names = reactions.sort(function (a) {
               return a === app.session.user ? -1 : 1;
             }).slice(0, overLimit ? limit - 1 : limit).map(function (user) {
               return m(
@@ -98,23 +112,28 @@ System.register('flarum/likes/addLikesList', ['flarum/extend', 'flarum/app', 'fl
             // others" name to the end of the list. Clicking on it will display a modal
             // with a full list of names.
             if (overLimit) {
-              var count = likes.length - names.length;
+              //#DEBUG const count = likes.length - names.length;
+              var count = reactions.length - names.length;
 
               names.push(m(
                 'a',
                 { href: '#', onclick: function (e) {
                     e.preventDefault();
-                    app.modal.show(new PostLikesModal({ post: post }));
+                    //#DEBUG app.modal.show(new PostLikesModal({post}));
+                    app.modal.show(new PostReactionsModal({ post: post }));
                   } },
                 app.translator.transChoice('flarum-likes.forum.post.others_link', count, { count: count })
               ));
             }
 
-            items.add('liked', m(
+            //#DEBUG items.add('liked', (
+            //#DEBUG <div className="Post-likedBy">
+            //#DEBUG {app.translator.transChoice('flarum-likes.forum.post.liked_by' + (likes[0] === app.session.user ? '_self' : '') + '_text', names.length, {
+            items.add('reactedTo', m(
               'div',
-              { className: 'Post-likedBy' },
+              { className: 'Post-reactedToBy' },
               icon('thumbs-o-up'),
-              app.translator.transChoice('flarum-likes.forum.post.liked_by' + (likes[0] === app.session.user ? '_self' : '') + '_text', names.length, {
+              app.translator.transChoice('flarum-likes.forum.post.liked_by' + (reactions[0] === app.session.user ? '_self' : '') + '_text', names.length, {
                 count: names.length,
                 users: punctuateSeries(names)
               })
@@ -125,10 +144,83 @@ System.register('flarum/likes/addLikesList', ['flarum/extend', 'flarum/app', 'fl
     }
   };
 });;
-System.register('flarum/likes/components/PostLikedNotification', ['flarum/components/Notification', 'flarum/helpers/username', 'flarum/helpers/punctuateSeries'], function (_export) {
+System.register('flarum/reactions/components/PostReactionsModal', ['flarum/components/Modal', 'flarum/helpers/avatar', 'flarum/helpers/username'], function (_export) {
+
+  //#DEBUG export default class PostLikesModal extends Modal {
   'use strict';
 
-  var Notification, username, punctuateSeries, PostLikedNotification;
+  var Modal, avatar, username, PostReactionsModal;
+  return {
+    setters: [function (_flarumComponentsModal) {
+      Modal = _flarumComponentsModal['default'];
+    }, function (_flarumHelpersAvatar) {
+      avatar = _flarumHelpersAvatar['default'];
+    }, function (_flarumHelpersUsername) {
+      username = _flarumHelpersUsername['default'];
+    }],
+    execute: function () {
+      PostReactionsModal = (function (_Modal) {
+        babelHelpers.inherits(PostReactionsModal, _Modal);
+
+        function PostReactionsModal() {
+          babelHelpers.classCallCheck(this, PostReactionsModal);
+          babelHelpers.get(Object.getPrototypeOf(PostReactionsModal.prototype), 'constructor', this).apply(this, arguments);
+        }
+
+        babelHelpers.createClass(PostReactionsModal, [{
+          key: 'className',
+          value: function className() {
+            //#DEBUG return 'PostLikesModal Modal--small';
+            return 'PostReactionsModal Modal--small';
+          }
+        }, {
+          key: 'title',
+          value: function title() {
+            return app.translator.trans('flarum-likes.forum.post_likes.title');
+          }
+
+          //#DEBUG <ul className="PostLikesModal-list">
+          //#DEBUG {this.props.post.likes().map(user =>
+        }, {
+          key: 'content',
+          value: function content() {
+            return m(
+              'div',
+              { className: 'Modal-body' },
+              m(
+                'ul',
+                { className: 'PostReactionsModal-list' },
+                this.props.post.reactions().map(function (user) {
+                  return m(
+                    'li',
+                    null,
+                    m(
+                      'a',
+                      { href: app.route.user(user), config: m.route },
+                      avatar(user),
+                      ' ',
+                      ' ',
+                      username(user)
+                    )
+                  );
+                })
+              )
+            );
+          }
+        }]);
+        return PostReactionsModal;
+      })(Modal);
+
+      _export('default', PostReactionsModal);
+    }
+  };
+});;
+System.register('flarum/reactions/components/PostReactionsNotification', ['flarum/components/Notification', 'flarum/helpers/username', 'flarum/helpers/punctuateSeries'], function (_export) {
+
+  //#DEBUG export default class PostLikedNotification extends Notification {
+  'use strict';
+
+  var Notification, username, punctuateSeries, PostReactionsNotification;
   return {
     setters: [function (_flarumComponentsNotification) {
       Notification = _flarumComponentsNotification['default'];
@@ -138,15 +230,15 @@ System.register('flarum/likes/components/PostLikedNotification', ['flarum/compon
       punctuateSeries = _flarumHelpersPunctuateSeries['default'];
     }],
     execute: function () {
-      PostLikedNotification = (function (_Notification) {
-        babelHelpers.inherits(PostLikedNotification, _Notification);
+      PostReactionsNotification = (function (_Notification) {
+        babelHelpers.inherits(PostReactionsNotification, _Notification);
 
-        function PostLikedNotification() {
-          babelHelpers.classCallCheck(this, PostLikedNotification);
-          babelHelpers.get(Object.getPrototypeOf(PostLikedNotification.prototype), 'constructor', this).apply(this, arguments);
+        function PostReactionsNotification() {
+          babelHelpers.classCallCheck(this, PostReactionsNotification);
+          babelHelpers.get(Object.getPrototypeOf(PostReactionsNotification.prototype), 'constructor', this).apply(this, arguments);
         }
 
-        babelHelpers.createClass(PostLikedNotification, [{
+        babelHelpers.createClass(PostReactionsNotification, [{
           key: 'icon',
           value: function icon() {
             return 'thumbs-o-up';
@@ -174,82 +266,23 @@ System.register('flarum/likes/components/PostLikedNotification', ['flarum/compon
             return this.props.notification.subject().contentPlain();
           }
         }]);
-        return PostLikedNotification;
+        return PostReactionsNotification;
       })(Notification);
 
-      _export('default', PostLikedNotification);
+      _export('default', PostReactionsNotification);
     }
   };
 });;
-System.register('flarum/likes/components/PostLikesModal', ['flarum/components/Modal', 'flarum/helpers/avatar', 'flarum/helpers/username'], function (_export) {
+System.register('flarum/reactions/main', ['flarum/extend', 'flarum/app', 'flarum/models/Post', 'flarum/Model', 'flarum/components/NotificationGrid', 'flarum/reactions/addReaction', 'flarum/reactions/addReactionsList', 'flarum/reactions/components/PostReactionsNotification'], function (_export) {
+
+  //#DEBUG app.initializers.add('flarum-likes', () => {
+  //#DEBUG import addLikesList from 'flarum/likes/addLikesList';
   'use strict';
 
-  var Modal, avatar, username, PostLikesModal;
-  return {
-    setters: [function (_flarumComponentsModal) {
-      Modal = _flarumComponentsModal['default'];
-    }, function (_flarumHelpersAvatar) {
-      avatar = _flarumHelpersAvatar['default'];
-    }, function (_flarumHelpersUsername) {
-      username = _flarumHelpersUsername['default'];
-    }],
-    execute: function () {
-      PostLikesModal = (function (_Modal) {
-        babelHelpers.inherits(PostLikesModal, _Modal);
+  //#DEBUG import PostLikedNotification from 'flarum/likes/components/PostLikedNotification';
 
-        function PostLikesModal() {
-          babelHelpers.classCallCheck(this, PostLikesModal);
-          babelHelpers.get(Object.getPrototypeOf(PostLikesModal.prototype), 'constructor', this).apply(this, arguments);
-        }
-
-        babelHelpers.createClass(PostLikesModal, [{
-          key: 'className',
-          value: function className() {
-            return 'PostLikesModal Modal--small';
-          }
-        }, {
-          key: 'title',
-          value: function title() {
-            return app.translator.trans('flarum-likes.forum.post_likes.title');
-          }
-        }, {
-          key: 'content',
-          value: function content() {
-            return m(
-              'div',
-              { className: 'Modal-body' },
-              m(
-                'ul',
-                { className: 'PostLikesModal-list' },
-                this.props.post.likes().map(function (user) {
-                  return m(
-                    'li',
-                    null,
-                    m(
-                      'a',
-                      { href: app.route.user(user), config: m.route },
-                      avatar(user),
-                      ' ',
-                      ' ',
-                      username(user)
-                    )
-                  );
-                })
-              )
-            );
-          }
-        }]);
-        return PostLikesModal;
-      })(Modal);
-
-      _export('default', PostLikesModal);
-    }
-  };
-});;
-System.register('flarum/likes/main', ['flarum/extend', 'flarum/app', 'flarum/models/Post', 'flarum/Model', 'flarum/components/NotificationGrid', 'flarum/likes/addLikeAction', 'flarum/likes/addLikesList', 'flarum/likes/components/PostLikedNotification'], function (_export) {
-  'use strict';
-
-  var extend, app, Post, Model, NotificationGrid, addLikeAction, addLikesList, PostLikedNotification;
+  //#DEBUG import addLikeAction from 'flarum/likes/addLikeAction';
+  var extend, app, Post, Model, NotificationGrid, addReaction, addReactionsList, PostLikedNotification;
   return {
     setters: [function (_flarumExtend) {
       extend = _flarumExtend.extend;
@@ -261,27 +294,33 @@ System.register('flarum/likes/main', ['flarum/extend', 'flarum/app', 'flarum/mod
       Model = _flarumModel['default'];
     }, function (_flarumComponentsNotificationGrid) {
       NotificationGrid = _flarumComponentsNotificationGrid['default'];
-    }, function (_flarumLikesAddLikeAction) {
-      addLikeAction = _flarumLikesAddLikeAction['default'];
-    }, function (_flarumLikesAddLikesList) {
-      addLikesList = _flarumLikesAddLikesList['default'];
-    }, function (_flarumLikesComponentsPostLikedNotification) {
-      PostLikedNotification = _flarumLikesComponentsPostLikedNotification['default'];
+    }, function (_flarumReactionsAddReaction) {
+      addReaction = _flarumReactionsAddReaction['default'];
+    }, function (_flarumReactionsAddReactionsList) {
+      addReactionsList = _flarumReactionsAddReactionsList['default'];
+    }, function (_flarumReactionsComponentsPostReactionsNotification) {
+      PostLikedNotification = _flarumReactionsComponentsPostReactionsNotification['default'];
     }],
     execute: function () {
+      app.initializers.add('flarum-reactions', function () {
+        //#DEBUG app.notificationComponents.postLiked = PostLikedNotification;
+        app.notificationComponents.postReactedTo = PostReactionsNotification;
 
-      app.initializers.add('flarum-likes', function () {
-        app.notificationComponents.postLiked = PostLikedNotification;
+        //#DEBUG Post.prototype.canLike = Model.attribute('canLike');
+        Post.prototype.canReactTo = Model.attribute('canReactTo');
+        //#DEBUG Post.prototype.likes = Model.hasMany('likes');
+        Post.prototype.reactions = Model.hasMany('reactions');
 
-        Post.prototype.canLike = Model.attribute('canLike');
-        Post.prototype.likes = Model.hasMany('likes');
-
-        addLikeAction();
-        addLikesList();
+        //#DEBUG addLikeAction();
+        addReaction();
+        //#DEBUG addLikesList();
+        addReactionsList();
 
         extend(NotificationGrid.prototype, 'notificationTypes', function (items) {
-          items.add('postLiked', {
-            name: 'postLiked',
+          //#DEBUG items.add('postLiked', {
+          items.add('postReactdTo', {
+            //#DEBUG name: 'postLiked',
+            name: 'postReactedTo',
             icon: 'thumbs-o-up',
             label: app.translator.trans('flarum-likes.forum.settings.notify_post_liked_label')
           });

@@ -9,13 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Flarum\Likes\Notification;
+//#DEBUG namespace Flarum\Likes\Notification;
+namespace Flarum\Reactions\Notification;
 
 use Flarum\Core\Notification\BlueprintInterface;
 use Flarum\Core\Post;
 use Flarum\Core\User;
 
-class PostLikedBlueprint implements BlueprintInterface
+//#DEBUG class PostLikedBlueprint implements BlueprintInterface
+class PostReactionsBlueprint implements BlueprintInterface
 {
     /**
      * @var Post
@@ -66,7 +68,8 @@ class PostLikedBlueprint implements BlueprintInterface
      */
     public static function getType()
     {
-        return 'postLiked';
+        //#DEBUG return 'postLiked';
+        return 'postReactedTo';
     }
 
     /**

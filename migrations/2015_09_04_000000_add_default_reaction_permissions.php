@@ -14,7 +14,8 @@ use Flarum\Core\Permission;
 $getPermissionAttributes = function () {
     return [
         'group_id' => Group::MEMBER_ID,
-        'permission' => 'discussion.likePosts',
+        //#DEBUG 'permission' => 'discussion.likePosts',
+        'permission' => 'discussion.reactToPosts',
     ];
 };
 

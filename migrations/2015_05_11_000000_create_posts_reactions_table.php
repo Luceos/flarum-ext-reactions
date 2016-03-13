@@ -12,7 +12,8 @@ use Flarum\Database\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
 return Migration::createTable(
-    'posts_likes',
+    //#DEBUG 'posts_likes',
+    'posts_reactions',
     function (Blueprint $table) {
         $table->integer('post_id')->unsigned();
         $table->integer('user_id')->unsigned();

@@ -9,12 +9,16 @@
  * file that was distributed with this source code.
  */
 
-use Flarum\Likes\Listener;
+//#DEBUG use Flarum\Likes\Listener;
+use Flarum\Reactions\Listener;
 use Illuminate\Contracts\Events\Dispatcher;
 
 return function (Dispatcher $events) {
     $events->subscribe(Listener\AddClientAssets::class);
-    $events->subscribe(Listener\AddPostLikesRelationship::class);
-    $events->subscribe(Listener\SaveLikesToDatabase::class);
-    $events->subscribe(Listener\SendNotificationWhenPostIsLiked::class);
+    //#DEBUG $events->subscribe(Listener\AddPostLikesRelationship::class);
+    $events->subscribe(Listener\AddPostReactionsRelationship::class);
+    //#DEBUG $events->subscribe(Listener\SaveLikesToDatabase::class);
+    $events->subscribe(Listener\SaveReactionsToDatabase::class);
+    //#DEBUG $events->subscribe(Listener\SendNotificationWhenPostIsLiked::class);
+    $events->subscribe(Listener\SendNotificationWhenPostIsReactedTo::class);
 };

@@ -2,7 +2,8 @@ import Notification from 'flarum/components/Notification';
 import username from 'flarum/helpers/username';
 import punctuateSeries from 'flarum/helpers/punctuateSeries';
 
-export default class PostLikedNotification extends Notification {
+//#DEBUG export default class PostLikedNotification extends Notification {
+export default class PostReactionsNotification extends Notification {
   icon() {
     return 'thumbs-o-up';
   }
