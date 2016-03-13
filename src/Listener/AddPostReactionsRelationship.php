@@ -24,7 +24,7 @@ use Flarum\Event\PrepareApiAttributes;
 use Illuminate\Contracts\Events\Dispatcher;
 
 //#DEBUG class AddPostLikesRelationship
-class AddPostReactionssRelationship
+class AddPostReactionsRelationship
 {
     /**
      * @param Dispatcher $events
