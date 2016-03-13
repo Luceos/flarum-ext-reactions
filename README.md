@@ -1,3 +1,3 @@
-# flarum-ext-likes-plus
+# flarum-ext-reactions
 
 TBA.
