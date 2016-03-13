@@ -282,7 +282,7 @@ System.register('jordanjay29/reactions/main', ['flarum/extend', 'flarum/app', 'f
   //#DEBUG import PostLikedNotification from 'flarum/likes/components/PostLikedNotification';
 
   //#DEBUG import addLikeAction from 'flarum/likes/addLikeAction';
-  var extend, app, Post, Model, NotificationGrid, addReaction, addReactionsList, PostLikedNotification;
+  var extend, app, Post, Model, NotificationGrid, addReaction, addReactionsList, PostReactionsNotification;
   return {
     setters: [function (_flarumExtend) {
       extend = _flarumExtend.extend;
@@ -299,7 +299,7 @@ System.register('jordanjay29/reactions/main', ['flarum/extend', 'flarum/app', 'f
     }, function (_jordanjay29ReactionsAddReactionsList) {
       addReactionsList = _jordanjay29ReactionsAddReactionsList['default'];
     }, function (_jordanjay29ReactionsComponentsPostReactionsNotification) {
-      PostLikedNotification = _jordanjay29ReactionsComponentsPostReactionsNotification['default'];
+      PostReactionsNotification = _jordanjay29ReactionsComponentsPostReactionsNotification['default'];
     }],
     execute: function () {
       app.initializers.add('jordanjay29-reactions', function () {

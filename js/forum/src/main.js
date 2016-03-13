@@ -9,7 +9,7 @@ import addReaction from 'jordanjay29/reactions/addReaction';
 //#DEBUG import addLikesList from 'flarum/likes/addLikesList';
 import addReactionsList from 'jordanjay29/reactions/addReactionsList';
 //#DEBUG import PostLikedNotification from 'flarum/likes/components/PostLikedNotification';
-import PostLikedNotification from 'jordanjay29/reactions/components/PostReactionsNotification';
+import PostReactionsNotification from 'jordanjay29/reactions/components/PostReactionsNotification';
 
 //#DEBUG app.initializers.add('flarum-likes', () => {
 app.initializers.add('jordanjay29-reactions', () => {
