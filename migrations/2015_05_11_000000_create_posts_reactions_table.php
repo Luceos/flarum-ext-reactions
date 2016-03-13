@@ -8,6 +8,7 @@
  * file that was distributed with this source code.
  */
 
+/* For Beta 5
 use Flarum\Database\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
@@ -20,3 +21,25 @@ return Migration::createTable(
         $table->primary(['post_id', 'user_id']);
     }
 );
+*/
+
+namespace Flarum\Reactions\Migration;
+
+use Flarum\Database\AbstractMigration;
+use Illuminate\Database\Schema\Blueprint;
+
+class CreatePostsReactionsTable extends AbstractMigration
+{
+    public function up()
+    {
+        $this->schema->create('posts_reactions', function (Blueprint $table) {
+            $table->integer('post_id')->unsigned();
+            $table->integer('user_id')->unsigned();
+            $table->primary(['post_id', 'user_id']);
+        });
+    }
+    public function down()
+    {
+        $this->schema->drop('posts_reactions');
+    }
+}

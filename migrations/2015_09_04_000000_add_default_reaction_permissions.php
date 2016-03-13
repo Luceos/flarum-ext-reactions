@@ -8,6 +8,7 @@
  * file that was distributed with this source code.
  */
 
+/* For Beta 5
 use Flarum\Core\Group;
 use Flarum\Core\Permission;
 
@@ -33,3 +34,38 @@ return [
         Permission::where($getPermissionAttributes())->delete();
     }
 ];
+*/
+
+namespace Flarum\Reactions\Migration;
+
+use Flarum\Core\Group;
+use Flarum\Core\Permission;
+use Flarum\Database\AbstractMigration;
+
+class AddDefaultReactToPermissions extends AbstractMigration
+{
+    public function up()
+    {
+        Permission::unguard();
+
+        $permission = Permission::firstOrNew($this->getPermissionAttributes());
+
+        $permission->save();
+    }
+
+    public function down()
+    {
+        Permission::where($this->getPermissionAttributes())->delete();
+    }
+
+    /**
+     * @return array
+     */
+    protected function getPermissionAttributes()
+    {
+        return [
+            'group_id' => Group::MEMBER_ID,
+            'permission' => 'discussion.reactToPosts'
+        ];
+    }
+}
