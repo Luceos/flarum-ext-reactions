@@ -10,7 +10,7 @@
  */
 
 //#DEBUG use Flarum\Likes\Listener;
-use Flarum\Reactions\Listener;
+use JordanJay29\Reactions\Listener;
 use Illuminate\Contracts\Events\Dispatcher;
 
 return function (Dispatcher $events) {
