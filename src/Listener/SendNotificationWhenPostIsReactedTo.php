@@ -90,7 +90,7 @@ class SendNotificationWhenPostIsReactedTo
         if ($post->user->id != $user->id) {
             $this->notifications->sync(
                 //#DEBUG new PostLikedBlueprint($post, $user),
-                new PostReactedTodBlueprint($post, $user),
+                new PostReactedToBlueprint($post, $user),
                 $recipients
             );
         }
