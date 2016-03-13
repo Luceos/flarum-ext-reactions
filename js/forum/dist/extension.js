@@ -61,7 +61,7 @@ System.register('jordanjay29/reactions/addReaction', ['flarum/extend', 'flarum/a
     }
   };
 });;
-System.register('jordanjay29/reactions/addReactionList', ['flarum/extend', 'flarum/app', 'flarum/components/CommentPost', 'flarum/helpers/punctuateSeries', 'flarum/helpers/username', 'flarum/helpers/icon', 'jordanjay29/reactions/components/PostReactionsModal'], function (_export) {
+System.register('jordanjay29/reactions/addReactionsList', ['flarum/extend', 'flarum/app', 'flarum/components/CommentPost', 'flarum/helpers/punctuateSeries', 'flarum/helpers/username', 'flarum/helpers/icon', 'jordanjay29/reactions/components/PostReactionsModal'], function (_export) {
   'use strict';
 
   //#DEBUG import PostLikesModal from 'flarum/likes/components/PostLikesModal';
