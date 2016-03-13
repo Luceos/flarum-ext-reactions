@@ -5,14 +5,14 @@ import Model from 'flarum/Model';
 import NotificationGrid from 'flarum/components/NotificationGrid';
 
 //#DEBUG import addLikeAction from 'flarum/likes/addLikeAction';
-import addReaction from 'flarum/reactions/addReaction';
+import addReaction from 'jordanjay29/reactions/addReaction';
 //#DEBUG import addLikesList from 'flarum/likes/addLikesList';
-import addReactionsList from 'flarum/reactions/addReactionsList';
+import addReactionsList from 'jordanjay29/reactions/addReactionsList';
 //#DEBUG import PostLikedNotification from 'flarum/likes/components/PostLikedNotification';
-import PostLikedNotification from 'flarum/reactions/components/PostReactionsNotification';
+import PostLikedNotification from 'jordanjay29/reactions/components/PostReactionsNotification';
 
 //#DEBUG app.initializers.add('flarum-likes', () => {
-app.initializers.add('flarum-reactions', () => {
+app.initializers.add('jordanjay29-reactions', () => {
   //#DEBUG app.notificationComponents.postLiked = PostLikedNotification;
   app.notificationComponents.postReactedTo = PostReactionsNotification;
 

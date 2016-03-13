@@ -1,4 +1,4 @@
-System.register('flarum/reactions/addReaction', ['flarum/extend', 'flarum/app', 'flarum/components/Button', 'flarum/components/CommentPost'], function (_export) {
+System.register('jordanjay29/reactions/addReaction', ['flarum/extend', 'flarum/app', 'flarum/components/Button', 'flarum/components/CommentPost'], function (_export) {
   'use strict';
 
   var extend, app, Button, CommentPost;
@@ -61,7 +61,7 @@ System.register('flarum/reactions/addReaction', ['flarum/extend', 'flarum/app', 
     }
   };
 });;
-System.register('flarum/reactions/addReactionList', ['flarum/extend', 'flarum/app', 'flarum/components/CommentPost', 'flarum/helpers/punctuateSeries', 'flarum/helpers/username', 'flarum/helpers/icon', 'flarum/reactions/components/PostReactionsModal'], function (_export) {
+System.register('jordanjay29/reactions/addReactionList', ['flarum/extend', 'flarum/app', 'flarum/components/CommentPost', 'flarum/helpers/punctuateSeries', 'flarum/helpers/username', 'flarum/helpers/icon', 'jordanjay29/reactions/components/PostReactionsModal'], function (_export) {
   'use strict';
 
   //#DEBUG import PostLikesModal from 'flarum/likes/components/PostLikesModal';
@@ -79,8 +79,8 @@ System.register('flarum/reactions/addReactionList', ['flarum/extend', 'flarum/ap
       username = _flarumHelpersUsername['default'];
     }, function (_flarumHelpersIcon) {
       icon = _flarumHelpersIcon['default'];
-    }, function (_flarumReactionsComponentsPostReactionsModal) {
-      PostReactionsModal = _flarumReactionsComponentsPostReactionsModal['default'];
+    }, function (_jordanjay29ReactionsComponentsPostReactionsModal) {
+      PostReactionsModal = _jordanjay29ReactionsComponentsPostReactionsModal['default'];
     }],
     execute: function () {
       _export('default', function () {
@@ -144,7 +144,7 @@ System.register('flarum/reactions/addReactionList', ['flarum/extend', 'flarum/ap
     }
   };
 });;
-System.register('flarum/reactions/components/PostReactionsModal', ['flarum/components/Modal', 'flarum/helpers/avatar', 'flarum/helpers/username'], function (_export) {
+System.register('jordanjay29/reactions/components/PostReactionsModal', ['flarum/components/Modal', 'flarum/helpers/avatar', 'flarum/helpers/username'], function (_export) {
 
   //#DEBUG export default class PostLikesModal extends Modal {
   'use strict';
@@ -215,7 +215,7 @@ System.register('flarum/reactions/components/PostReactionsModal', ['flarum/compo
     }
   };
 });;
-System.register('flarum/reactions/components/PostReactionsNotification', ['flarum/components/Notification', 'flarum/helpers/username', 'flarum/helpers/punctuateSeries'], function (_export) {
+System.register('jordanjay29/reactions/components/PostReactionsNotification', ['flarum/components/Notification', 'flarum/helpers/username', 'flarum/helpers/punctuateSeries'], function (_export) {
 
   //#DEBUG export default class PostLikedNotification extends Notification {
   'use strict';
@@ -273,7 +273,7 @@ System.register('flarum/reactions/components/PostReactionsNotification', ['flaru
     }
   };
 });;
-System.register('flarum/reactions/main', ['flarum/extend', 'flarum/app', 'flarum/models/Post', 'flarum/Model', 'flarum/components/NotificationGrid', 'flarum/reactions/addReaction', 'flarum/reactions/addReactionsList', 'flarum/reactions/components/PostReactionsNotification'], function (_export) {
+System.register('jordanjay29/reactions/main', ['flarum/extend', 'flarum/app', 'flarum/models/Post', 'flarum/Model', 'flarum/components/NotificationGrid', 'jordanjay29/reactions/addReaction', 'jordanjay29/reactions/addReactionsList', 'jordanjay29/reactions/components/PostReactionsNotification'], function (_export) {
 
   //#DEBUG app.initializers.add('flarum-likes', () => {
   //#DEBUG import addLikesList from 'flarum/likes/addLikesList';
@@ -294,15 +294,15 @@ System.register('flarum/reactions/main', ['flarum/extend', 'flarum/app', 'flarum
       Model = _flarumModel['default'];
     }, function (_flarumComponentsNotificationGrid) {
       NotificationGrid = _flarumComponentsNotificationGrid['default'];
-    }, function (_flarumReactionsAddReaction) {
-      addReaction = _flarumReactionsAddReaction['default'];
-    }, function (_flarumReactionsAddReactionsList) {
-      addReactionsList = _flarumReactionsAddReactionsList['default'];
-    }, function (_flarumReactionsComponentsPostReactionsNotification) {
-      PostLikedNotification = _flarumReactionsComponentsPostReactionsNotification['default'];
+    }, function (_jordanjay29ReactionsAddReaction) {
+      addReaction = _jordanjay29ReactionsAddReaction['default'];
+    }, function (_jordanjay29ReactionsAddReactionsList) {
+      addReactionsList = _jordanjay29ReactionsAddReactionsList['default'];
+    }, function (_jordanjay29ReactionsComponentsPostReactionsNotification) {
+      PostLikedNotification = _jordanjay29ReactionsComponentsPostReactionsNotification['default'];
     }],
     execute: function () {
-      app.initializers.add('flarum-reactions', function () {
+      app.initializers.add('jordanjay29-reactions', function () {
         //#DEBUG app.notificationComponents.postLiked = PostLikedNotification;
         app.notificationComponents.postReactedTo = PostReactionsNotification;
 

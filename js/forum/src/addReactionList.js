@@ -6,7 +6,7 @@ import username from 'flarum/helpers/username';
 import icon from 'flarum/helpers/icon';
 
 //#DEBUG import PostLikesModal from 'flarum/likes/components/PostLikesModal';
-import PostReactionsModal from 'flarum/reactions/components/PostReactionsModal';
+import PostReactionsModal from 'jordanjay29/reactions/components/PostReactionsModal';
 
 export default function() {
   extend(CommentPost.prototype, 'footerItems', function(items) {

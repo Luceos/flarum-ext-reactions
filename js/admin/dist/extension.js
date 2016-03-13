@@ -1,4 +1,4 @@
-System.register('flarum/reactions/main', ['flarum/extend', 'flarum/app', 'flarum/components/PermissionGrid'], function (_export) {
+System.register('jordanjay29/reactions/main', ['flarum/extend', 'flarum/app', 'flarum/components/PermissionGrid'], function (_export) {
 
   //#DEBUG app.initializers.add('flarum-likes', () => {
   'use strict';
@@ -13,7 +13,7 @@ System.register('flarum/reactions/main', ['flarum/extend', 'flarum/app', 'flarum
       PermissionGrid = _flarumComponentsPermissionGrid['default'];
     }],
     execute: function () {
-      app.initializers.add('flarum-reactions', function () {
+      app.initializers.add('jordanjay29-reactions', function () {
         extend(PermissionGrid.prototype, 'replyItems', function (items) {
           //#DEBUG items.add('likePosts', {
           items.add('reactToPosts', {

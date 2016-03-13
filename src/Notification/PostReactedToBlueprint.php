@@ -10,7 +10,7 @@
  */
 
 //#DEBUG namespace Flarum\Likes\Notification;
-namespace Flarum\Reactions\Notification;
+namespace JordanJay29\Reactions\Notification;
 
 use Flarum\Core\Notification\BlueprintInterface;
 use Flarum\Core\Post;

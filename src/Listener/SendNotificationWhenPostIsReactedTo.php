@@ -10,7 +10,7 @@
  */
 
 //#DEBUG namespace Flarum\Likes\Listener;
-namespace Flarum\Reactions\Listener;
+namespace JordanJay29\Reactions\Listener;
 
 use Flarum\Api\Serializer\PostBasicSerializer;
 use Flarum\Core\Notification\NotificationSyncer;
@@ -18,11 +18,11 @@ use Flarum\Core\Post;
 use Flarum\Core\User;
 use Flarum\Event\ConfigureNotificationTypes;
 //#DEBUG use Flarum\Likes\Event\PostWasLiked;
-use Flarum\Reactions\Event\PostWasReactedTo;
+use JordanJay29\Reactions\Event\PostWasReactedTo;
 //#DEBUG use Flarum\Likes\Event\PostWasUnliked;
-use Flarum\Reactions\Event\PostWasUnreactedTo;
+use JordanJay29\Reactions\Event\PostWasUnreactedTo;
 //#DEBUG use Flarum\Likes\Notification\PostLikedBlueprint;
-use Flarum\Reactions\Notification\PostReactedTodBlueprint;
+use JordanJay29\Reactions\Notification\PostReactedTodBlueprint;
 use Illuminate\Contracts\Events\Dispatcher;
 
 //#DEBUG class SendNotificationWhenPostIsLiked

@@ -1,5 +1,5 @@
 {
-    "name": "flarum/flarum-ext-reactions",
+    "name": "jordanjay29/flarum-ext-reactions",
     "description": "Allow users to react to posts.",
     "type": "flarum-extension",
     "keywords": ["discussion"],
@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Flarum\\Reactions\\": "src/"
+            "JordanJay29\\Reactions\\": "src/"
         }
     },
     "extra": {

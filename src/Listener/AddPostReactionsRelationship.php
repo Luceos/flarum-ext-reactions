@@ -10,7 +10,7 @@
  */
 
 //#DEBUG namespace Flarum\Likes\Listener;
-namespace Flarum\Reactions\Listener;
+namespace JordanJay29\Reactions\Listener;
 
 use Flarum\Api\Controller;
 use Flarum\Api\Serializer\PostSerializer;

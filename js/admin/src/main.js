@@ -3,7 +3,7 @@ import app from 'flarum/app';
 import PermissionGrid from 'flarum/components/PermissionGrid';
 
 //#DEBUG app.initializers.add('flarum-likes', () => {
-app.initializers.add('flarum-reactions', () => {
+app.initializers.add('jordanjay29-reactions', () => {
   extend(PermissionGrid.prototype, 'replyItems', items => {
     //#DEBUG items.add('likePosts', {
     items.add('reactToPosts', {

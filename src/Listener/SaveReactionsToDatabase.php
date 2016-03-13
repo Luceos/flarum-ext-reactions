@@ -10,15 +10,15 @@
  */
 
 //#DEBUG namespace Flarum\Likes\Listener;
-namespace Flarum\Reactions\Listener;
+namespace JordanJay29\Reactions\Listener;
 
 use Flarum\Core\Access\AssertPermissionTrait;
 use Flarum\Event\PostWasDeleted;
 use Flarum\Event\PostWillBeSaved;
 //#DEBUG use Flarum\Likes\Event\PostWasLiked;
-use Flarum\Reactions\Event\PostWasReactedTo;
+use JordanJay29\Reactions\Event\PostWasReactedTo;
 //#DEBUG use Flarum\Likes\Event\PostWasUnliked;
-use Flarum\Reactions\Event\PostWasUnreactedTo;
+use JordanJay29\Reactions\Event\PostWasUnreactedTo;
 use Illuminate\Contracts\Events\Dispatcher;
 
 //#DEBUG class SaveReactionsToDatabase

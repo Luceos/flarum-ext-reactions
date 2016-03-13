@@ -10,7 +10,7 @@
  */
 
 //#DEBUG namespace Flarum\Likes\Event;
-namespace Flarum\Reactions\Event;
+namespace JordanJay29\Reactions\Event;
 
 use Flarum\Core\Post;
 use Flarum\Core\User;
