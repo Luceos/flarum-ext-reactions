@@ -16,7 +16,7 @@ export default function() {
     //#DEBUG items.add('like',
     items.add('reaction',
       Button.component({
-        children: app.translator.trans(isLiked ? 'flarum-likes.forum.post.unlike_link' : 'flarum-likes.forum.post.like_link'),
+        children: app.translator.trans(isReactedTo ? 'flarum-likes.forum.post.unlike_link' : 'flarum-likes.forum.post.like_link'),
         className: 'Button Button--link',
         onclick: () => {
           //#DEBUG isLiked = !isLiked;
