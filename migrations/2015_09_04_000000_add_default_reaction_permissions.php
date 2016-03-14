@@ -36,7 +36,7 @@ return [
 ];
 */
 
-namespace Flarum\Reactions\Migration;
+namespace jordanjay29\reactions\Migration;
 
 use Flarum\Core\Group;
 use Flarum\Core\Permission;
