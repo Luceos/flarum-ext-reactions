@@ -30,9 +30,9 @@ System.register('jordanjay29/reactions/addReaction', ['flarum/extend', 'flarum/a
           //#DEBUG items.add('like',
           items.add('reaction', SplitDropdown.component({
             children: app.translator.trans(isReactedTo ? 'flarum-likes.forum.post.unlike_link' : 'flarum-likes.forum.post.like_link'),
-            //className: '',
+            className: 'ReactionDropdown',
             buttonClassName: 'Button Button--link',
-            //menuClassName: '',
+            menuClassName: 'Dropdown Dropdown-menu',
             icon: 'smile-o',
             label: 'React'
           })
