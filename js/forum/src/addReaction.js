@@ -1,7 +1,7 @@
 import { extend } from 'flarum/extend';
 import app from 'flarum/app';
 import Button from 'flarum/components/Button';
-import SplitDropdown from 'flarum/components/SplitDropdown';
+import Dropdown from 'flarum/components/SplitDropdown';
 import CommentPost from 'flarum/components/CommentPost';
 
 export default function() {
@@ -16,9 +16,9 @@ export default function() {
 
     //#DEBUG items.add('like',
     items.add('reaction',
-      SplitDropdown.component({
+      Dropdown.component({
         children: app.translator.trans(isReactedTo ? 'flarum-likes.forum.post.unlike_link' : 'flarum-likes.forum.post.like_link'),
-        className: 'ReactionDropdown',
+        className: 'Button Button--link',
         buttonClassName: 'Button Button--link',
         menuClassName: 'Dropdown Dropdown-menu',
         icon: 'smile-o',

@@ -1,7 +1,7 @@
 System.register('jordanjay29/reactions/addReaction', ['flarum/extend', 'flarum/app', 'flarum/components/Button', 'flarum/components/SplitDropdown', 'flarum/components/CommentPost'], function (_export) {
   'use strict';
 
-  var extend, app, Button, SplitDropdown, CommentPost;
+  var extend, app, Button, Dropdown, CommentPost;
   return {
     setters: [function (_flarumExtend) {
       extend = _flarumExtend.extend;
@@ -10,7 +10,7 @@ System.register('jordanjay29/reactions/addReaction', ['flarum/extend', 'flarum/a
     }, function (_flarumComponentsButton) {
       Button = _flarumComponentsButton['default'];
     }, function (_flarumComponentsSplitDropdown) {
-      SplitDropdown = _flarumComponentsSplitDropdown['default'];
+      Dropdown = _flarumComponentsSplitDropdown['default'];
     }, function (_flarumComponentsCommentPost) {
       CommentPost = _flarumComponentsCommentPost['default'];
     }],
@@ -28,9 +28,9 @@ System.register('jordanjay29/reactions/addReaction', ['flarum/extend', 'flarum/a
           });
 
           //#DEBUG items.add('like',
-          items.add('reaction', SplitDropdown.component({
+          items.add('reaction', Dropdown.component({
             children: app.translator.trans(isReactedTo ? 'flarum-likes.forum.post.unlike_link' : 'flarum-likes.forum.post.like_link'),
-            className: 'ReactionDropdown',
+            className: 'Button Button--link',
             buttonClassName: 'Button Button--link',
             menuClassName: 'Dropdown Dropdown-menu',
             icon: 'smile-o',
