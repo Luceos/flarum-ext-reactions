@@ -36,13 +36,13 @@ return [
 ];
 */
 
-namespace jordanjay29\reactions\Migration;
+namespace Flarum\Reactions\Migration;
 
 use Flarum\Core\Group;
 use Flarum\Core\Permission;
 use Flarum\Database\AbstractMigration;
 
-class AddDefaultReactToPermissions extends AbstractMigration
+class AddDefaultReactionPermissions extends AbstractMigration
 {
     public function up()
     {
