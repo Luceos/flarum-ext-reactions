@@ -1,7 +1,7 @@
-System.register('jordanjay29/reactions/addReaction', ['flarum/extend', 'flarum/app', 'flarum/components/Button', 'flarum/components/Dropdown', 'flarum/components/CommentPost'], function (_export) {
+System.register('jordanjay29/reactions/addReaction', ['flarum/extend', 'flarum/app', 'flarum/components/Button', 'flarum/components/SelectDropdown', 'flarum/components/CommentPost'], function (_export) {
   'use strict';
 
-  var extend, app, Button, Dropdown, CommentPost;
+  var extend, app, Button, SelectDropdown, CommentPost;
   return {
     setters: [function (_flarumExtend) {
       extend = _flarumExtend.extend;
@@ -9,8 +9,8 @@ System.register('jordanjay29/reactions/addReaction', ['flarum/extend', 'flarum/a
       app = _flarumApp['default'];
     }, function (_flarumComponentsButton) {
       Button = _flarumComponentsButton['default'];
-    }, function (_flarumComponentsSplitDropdown) {
-      Dropdown = _flarumComponentsSplitDropdown['default'];
+    }, function (_flarumComponentsSelectDropdown) {
+      SelectDropdown = _flarumComponentsSelectDropdown['default'];
     }, function (_flarumComponentsCommentPost) {
       CommentPost = _flarumComponentsCommentPost['default'];
     }],
@@ -28,7 +28,7 @@ System.register('jordanjay29/reactions/addReaction', ['flarum/extend', 'flarum/a
           });
 
           //#DEBUG items.add('like',
-          items.add('reaction', Dropdown.component({
+          items.add('reaction', SelectDropdown.component({
             children: app.translator.trans(isReactedTo ? 'flarum-likes.forum.post.unlike_link' : 'flarum-likes.forum.post.like_link'),
             className: 'Button Button--link',
             buttonClassName: 'Button Button--link',
