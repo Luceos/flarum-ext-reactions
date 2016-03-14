@@ -1,7 +1,7 @@
 import { extend } from 'flarum/extend';
 import app from 'flarum/app';
 import Button from 'flarum/components/Button';
-import Dropdown from 'flarum/components/SplitDropdown';
+import Dropdown from 'flarum/components/Dropdown';
 import CommentPost from 'flarum/components/CommentPost';
 
 export default function() {

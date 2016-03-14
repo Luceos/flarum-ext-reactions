@@ -1,4 +1,4 @@
-System.register('jordanjay29/reactions/addReaction', ['flarum/extend', 'flarum/app', 'flarum/components/Button', 'flarum/components/SplitDropdown', 'flarum/components/CommentPost'], function (_export) {
+System.register('jordanjay29/reactions/addReaction', ['flarum/extend', 'flarum/app', 'flarum/components/Button', 'flarum/components/Dropdown', 'flarum/components/CommentPost'], function (_export) {
   'use strict';
 
   var extend, app, Button, Dropdown, CommentPost;
