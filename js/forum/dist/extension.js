@@ -1,7 +1,7 @@
-System.register('jordanjay29/reactions/addReaction', ['flarum/extend', 'flarum/app', 'flarum/components/Button', 'flarum/components/CommentPost'], function (_export) {
+System.register('jordanjay29/reactions/addReaction', ['flarum/extend', 'flarum/app', 'flarum/components/Button', 'flarum/components/SplitDropdown', 'flarum/components/CommentPost'], function (_export) {
   'use strict';
 
-  var extend, app, Button, CommentPost;
+  var extend, app, Button, SplitDropdown, CommentPost;
   return {
     setters: [function (_flarumExtend) {
       extend = _flarumExtend.extend;
@@ -9,6 +9,8 @@ System.register('jordanjay29/reactions/addReaction', ['flarum/extend', 'flarum/a
       app = _flarumApp['default'];
     }, function (_flarumComponentsButton) {
       Button = _flarumComponentsButton['default'];
+    }, function (_flarumComponentsSplitDropdown) {
+      SplitDropdown = _flarumComponentsSplitDropdown['default'];
     }, function (_flarumComponentsCommentPost) {
       CommentPost = _flarumComponentsCommentPost['default'];
     }],
@@ -26,36 +28,45 @@ System.register('jordanjay29/reactions/addReaction', ['flarum/extend', 'flarum/a
           });
 
           //#DEBUG items.add('like',
-          items.add('reaction', Button.component({
+          items.add('reaction', SplitDropdown.component({
             children: app.translator.trans(isReactedTo ? 'flarum-likes.forum.post.unlike_link' : 'flarum-likes.forum.post.like_link'),
-            className: 'Button Button--link',
-            onclick: function onclick() {
-              //#DEBUG isLiked = !isLiked;
-              isReactedTo = !isReactedTo;
-
-              //#DEBUG post.save({isLiked});
-              post.save({ isReactedTo: isReactedTo });
-
-              // We've saved the fact that we do or don't like the post, but in order
-              // to provide instantaneous feedback to the user, we'll need to add or
-              // remove the like from the relationship data manually.
-              //#DEBUG const data = post.data.relationships.likes.data;
-              var data = post.data.relationships.reactions.data;
-              //#DEBUG data.some((like, i) => {
-              data.some(function (reaction, i) {
-                //#DEBUG if (like.id === app.session.user.id()) {
-                if (reaction.id === app.session.user.id()) {
-                  data.splice(i, 1);
-                  return true;
-                }
-              });
-
-              //#DEBUG if (isLiked) {
-              if (isReactedTo) {
-                data.unshift({ type: 'users', id: app.session.user.id() });
-              }
-            }
-          }));
+            //className: '',
+            buttonClassName: 'Button Button--link',
+            //menuClassName: '',
+            icon: 'smile-o',
+            label: 'React'
+          })
+          // Button.component({
+          //   children: app.translator.trans(isReactedTo ? 'flarum-likes.forum.post.unlike_link' : 'flarum-likes.forum.post.like_link'),
+          //   className: 'Button Button--link',
+          //   onclick: () => {
+          //     //#DEBUG isLiked = !isLiked;
+          //     isReactedTo = !isReactedTo;
+          //
+          //     //#DEBUG post.save({isLiked});
+          //     post.save({isReactedTo});
+          //
+          //     // We've saved the fact that we do or don't like the post, but in order
+          //     // to provide instantaneous feedback to the user, we'll need to add or
+          //     // remove the like from the relationship data manually.
+          //     //#DEBUG const data = post.data.relationships.likes.data;
+          //     const data = post.data.relationships.reactions.data;
+          //     //#DEBUG data.some((like, i) => {
+          //     data.some((reaction, i) => {
+          //       //#DEBUG if (like.id === app.session.user.id()) {
+          //       if (reaction.id === app.session.user.id()) {
+          //         data.splice(i, 1);
+          //         return true;
+          //       }
+          //     });
+          //
+          //     //#DEBUG if (isLiked) {
+          //     if (isReactedTo) {
+          //       data.unshift({type: 'users', id: app.session.user.id()});
+          //     }
+          //   }
+          // })
+          );
         });
       });
     }
