@@ -51,11 +51,11 @@ System.register('jordanjay29/reactions/addReaction', ['flarum/extend', 'flarum/a
               menuClassName: 'Dropdown Dropdown-menu',
               icon: 'smile-o',
               label: 'React' },
-            reactions.map(function (reactions) {
+            reactions.map(function (reaction) {
               return m(
                 'p',
                 null,
-                'reaction'
+                reaction
               );
             })
           ));

@@ -36,7 +36,7 @@ export default function() {
         menuClassName='Dropdown Dropdown-menu'
         icon='smile-o'
         label='React'>
-        {reactions.map(reactions => <p>reaction</p>)}
+        {reactions.map(reaction => <p>{reaction}</p>)}
       </SelectDropdown>
     );
       // Button.component({
