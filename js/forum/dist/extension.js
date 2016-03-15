@@ -29,7 +29,7 @@ System.register('jordanjay29/reactions/addReaction', ['flarum/extend', 'flarum/a
             return user === app.session.user;
           });
 
-          var reactions = [app.translator.trans(isReactedTo ? 'flarum-likes.forum.post.unlike_link' : 'flarum-likes.forum.post.like_link')];
+          var reactions = ['Like', 'Smile', 'Frown'];
 
           //#DEBUG items.add('like',
           // items.add('reaction',

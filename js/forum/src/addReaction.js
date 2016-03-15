@@ -15,7 +15,7 @@ export default function() {
     //#DEBUG let isLiked = app.session.user && post.likes().some(user => user === app.session.user);
     let isReactedTo = app.session.user && post.reactions().some(user => user === app.session.user);
 
-    const reactions = [app.translator.trans(isReactedTo ? 'flarum-likes.forum.post.unlike_link' : 'flarum-likes.forum.post.like_link')];
+    const reactions = ['Like','Smile','Frown'];
 
     //#DEBUG items.add('like',
     // items.add('reaction',
