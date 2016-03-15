@@ -1,7 +1,7 @@
 System.register('jordanjay29/reactions/addReaction', ['flarum/extend', 'flarum/app', 'flarum/components/Button', 'flarum/components/SelectDropdown', 'flarum/components/CommentPost', 'flarum/utils/ItemList'], function (_export) {
   'use strict';
 
-  var extend, app, Button, SelectDropdown, CommentPost, ItemsList;
+  var extend, app, Button, SelectDropdown, CommentPost, ItemList;
   return {
     setters: [function (_flarumExtend) {
       extend = _flarumExtend.extend;
@@ -14,7 +14,7 @@ System.register('jordanjay29/reactions/addReaction', ['flarum/extend', 'flarum/a
     }, function (_flarumComponentsCommentPost) {
       CommentPost = _flarumComponentsCommentPost['default'];
     }, function (_flarumUtilsItemList) {
-      ItemsList = _flarumUtilsItemList['default'];
+      ItemList = _flarumUtilsItemList['default'];
     }],
     execute: function () {
       _export('default', function () {
