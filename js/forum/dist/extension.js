@@ -43,22 +43,19 @@ System.register('jordanjay29/reactions/addReaction', ['flarum/extend', 'flarum/a
           //     label: 'React'
           //   })
 
-          items.add('reaction', m(
-            SelectDropdown,
-            {
-              className: 'Button Button--link',
-              buttonClassName: 'Button Button--link',
-              menuClassName: 'Dropdown Dropdown-menu',
-              icon: 'smile-o',
-              label: 'React' },
-            reactions.map(function (reaction) {
+          items.add('reaction', m(SelectDropdown, {
+            className: 'Button Button--link',
+            buttonClassName: 'Button Button--link',
+            menuClassName: 'Dropdown Dropdown-menu',
+            icon: 'smile-o',
+            label: 'React',
+            children: reactions.map(function (reaction) {
               return m(
                 'p',
                 null,
-                reaction
+                'reaction'
               );
-            })
-          ));
+            }) }));
           // Button.component({
           //   children: app.translator.trans(isReactedTo ? 'flarum-likes.forum.post.unlike_link' : 'flarum-likes.forum.post.like_link'),
           //   className: 'Button Button--link',

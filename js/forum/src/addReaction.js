@@ -30,15 +30,14 @@ export default function() {
     //   })
 
     items.add('reaction',
-      <SelectDropdown
+    <SelectDropdown
         className='Button Button--link'
         buttonClassName='Button Button--link'
         menuClassName='Dropdown Dropdown-menu'
         icon='smile-o'
-        label='React'>
-        {reactions.map(reaction => <p>{reaction}</p>)}
-      </SelectDropdown>
-    );
+        label='React'
+        children={reactions.map(reaction => <p>reaction</p>)} />
+);
       // Button.component({
       //   children: app.translator.trans(isReactedTo ? 'flarum-likes.forum.post.unlike_link' : 'flarum-likes.forum.post.like_link'),
       //   className: 'Button Button--link',
