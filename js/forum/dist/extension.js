@@ -34,7 +34,7 @@ System.register('jordanjay29/reactions/addReaction', ['flarum/extend', 'flarum/a
 
           //#DEBUG items.add('like',
           items.add('reaction', SelectDropdown.component({
-            children: reactions().toArray(),
+            children: reactions.toArray(),
             className: 'Button Button--link',
             buttonClassName: 'Button Button--link',
             menuClassName: 'Dropdown Dropdown-menu',
