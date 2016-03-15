@@ -20,7 +20,7 @@ export default function() {
     //#DEBUG items.add('like',
     items.add('reaction',
       SelectDropdown.component({
-        children: this.reactions,
+        children: reactions,
         className: 'Button Button--link',
         buttonClassName: 'Button Button--link',
         menuClassName: 'Dropdown Dropdown-menu',
