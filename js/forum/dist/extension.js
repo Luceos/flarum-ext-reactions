@@ -1,7 +1,7 @@
-System.register('jordanjay29/reactions/addReaction', ['flarum/extend', 'flarum/app', 'flarum/components/Button', 'flarum/components/SelectDropdown', 'flarum/components/CommentPost'], function (_export) {
+System.register('jordanjay29/reactions/addReaction', ['flarum/extend', 'flarum/app', 'flarum/components/Button', 'flarum/components/SelectDropdown', 'flarum/components/CommentPost', 'flarum/utils/ItemsList'], function (_export) {
   'use strict';
 
-  var extend, app, Button, SelectDropdown, CommentPost;
+  var extend, app, Button, SelectDropdown, CommentPost, ItemsList;
   return {
     setters: [function (_flarumExtend) {
       extend = _flarumExtend.extend;
@@ -13,11 +13,14 @@ System.register('jordanjay29/reactions/addReaction', ['flarum/extend', 'flarum/a
       SelectDropdown = _flarumComponentsSelectDropdown['default'];
     }, function (_flarumComponentsCommentPost) {
       CommentPost = _flarumComponentsCommentPost['default'];
+    }, function (_flarumUtilsItemsList) {
+      ItemsList = _flarumUtilsItemsList['default'];
     }],
     execute: function () {
       _export('default', function () {
         extend(CommentPost.prototype, 'actionItems', function (items) {
           var post = this.props.post;
+          var reactions = new ItemsList();
 
           //#DEBUG if (post.isHidden() || !post.canLike()) return;
           if (post.isHidden() || !post.canReactTo()) return;
@@ -27,9 +30,11 @@ System.register('jordanjay29/reactions/addReaction', ['flarum/extend', 'flarum/a
             return user === app.session.user;
           });
 
+          reactions.add('like', app.translator.trans(isReactedTo ? 'flarum-likes.forum.post.unlike_link' : 'flarum-likes.forum.post.like_link'));
+
           //#DEBUG items.add('like',
           items.add('reaction', SelectDropdown.component({
-            children: new array(app.translator.trans(isReactedTo ? 'flarum-likes.forum.post.unlike_link' : 'flarum-likes.forum.post.like_link')),
+            children: reactions().toArray(),
             className: 'Button Button--link',
             buttonClassName: 'Button Button--link',
             menuClassName: 'Dropdown Dropdown-menu',
