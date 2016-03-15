@@ -18,15 +18,26 @@ export default function() {
     const reactions = [app.translator.trans(isReactedTo ? 'flarum-likes.forum.post.unlike_link' : 'flarum-likes.forum.post.like_link')];
 
     //#DEBUG items.add('like',
+    // items.add('reaction',
+    //   SelectDropdown.component({
+    //     children: reactions,
+    //     className: 'Button Button--link',
+    //     buttonClassName: 'Button Button--link',
+    //     menuClassName: 'Dropdown Dropdown-menu',
+    //     icon: 'smile-o',
+    //     label: 'React'
+    //   })
+
     items.add('reaction',
-      SelectDropdown.component({
-        children: reactions,
-        className: 'Button Button--link',
-        buttonClassName: 'Button Button--link',
-        menuClassName: 'Dropdown Dropdown-menu',
-        icon: 'smile-o',
-        label: 'React'
-      })
+      <SelectDropdown
+        className='Button Button--link'
+        buttonClassName='Button Button--link'
+        menuClassName='Dropdown Dropdown-menu'
+        icon='smile-o'
+        label='React'>
+        {reactions.map(reaction => <p>reaction</p>)}
+      </SelectDropdown>
+    );
       // Button.component({
       //   children: app.translator.trans(isReactedTo ? 'flarum-likes.forum.post.unlike_link' : 'flarum-likes.forum.post.like_link'),
       //   className: 'Button Button--link',
@@ -57,6 +68,6 @@ export default function() {
       //     }
       //   }
       // })
-    );
+    // );
   });
 }

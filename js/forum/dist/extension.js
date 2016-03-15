@@ -32,14 +32,32 @@ System.register('jordanjay29/reactions/addReaction', ['flarum/extend', 'flarum/a
           var reactions = [app.translator.trans(isReactedTo ? 'flarum-likes.forum.post.unlike_link' : 'flarum-likes.forum.post.like_link')];
 
           //#DEBUG items.add('like',
-          items.add('reaction', SelectDropdown.component({
-            children: reactions,
-            className: 'Button Button--link',
-            buttonClassName: 'Button Button--link',
-            menuClassName: 'Dropdown Dropdown-menu',
-            icon: 'smile-o',
-            label: 'React'
-          })
+          // items.add('reaction',
+          //   SelectDropdown.component({
+          //     children: reactions,
+          //     className: 'Button Button--link',
+          //     buttonClassName: 'Button Button--link',
+          //     menuClassName: 'Dropdown Dropdown-menu',
+          //     icon: 'smile-o',
+          //     label: 'React'
+          //   })
+
+          items.add('reaction', m(
+            SelectDropdown,
+            {
+              className: 'Button Button--link',
+              buttonClassName: 'Button Button--link',
+              menuClassName: 'Dropdown Dropdown-menu',
+              icon: 'smile-o',
+              label: 'React' },
+            reactions.map(function (reaction) {
+              return m(
+                'p',
+                null,
+                'reaction'
+              );
+            })
+          ));
           // Button.component({
           //   children: app.translator.trans(isReactedTo ? 'flarum-likes.forum.post.unlike_link' : 'flarum-likes.forum.post.like_link'),
           //   className: 'Button Button--link',
@@ -70,7 +88,7 @@ System.register('jordanjay29/reactions/addReaction', ['flarum/extend', 'flarum/a
           //     }
           //   }
           // })
-          );
+          // );
         });
       });
     }
