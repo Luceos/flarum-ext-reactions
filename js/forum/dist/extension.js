@@ -1,4 +1,4 @@
-System.register('jordanjay29/reactions/addReaction', ['flarum/extend', 'flarum/app', 'flarum/components/Button', 'flarum/components/SelectDropdown', 'flarum/components/CommentPost', 'flarum/utils/ItemsList'], function (_export) {
+System.register('jordanjay29/reactions/addReaction', ['flarum/extend', 'flarum/app', 'flarum/components/Button', 'flarum/components/SelectDropdown', 'flarum/components/CommentPost', 'flarum/utils/ItemList'], function (_export) {
   'use strict';
 
   var extend, app, Button, SelectDropdown, CommentPost, ItemsList;
@@ -20,7 +20,7 @@ System.register('jordanjay29/reactions/addReaction', ['flarum/extend', 'flarum/a
       _export('default', function () {
         extend(CommentPost.prototype, 'actionItems', function (items) {
           var post = this.props.post;
-          var reactions = new ItemsList();
+          var reactions = new ItemList();
 
           //#DEBUG if (post.isHidden() || !post.canLike()) return;
           if (post.isHidden() || !post.canReactTo()) return;

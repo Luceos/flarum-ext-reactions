@@ -3,12 +3,12 @@ import app from 'flarum/app';
 import Button from 'flarum/components/Button';
 import SelectDropdown from 'flarum/components/SelectDropdown';
 import CommentPost from 'flarum/components/CommentPost';
-import ItemsList from 'flarum/utils/ItemsList';
+import ItemsList from 'flarum/utils/ItemList';
 
 export default function() {
   extend(CommentPost.prototype, 'actionItems', function(items) {
     const post = this.props.post;
-    const reactions = new ItemsList();
+    const reactions = new ItemList();
 
     //#DEBUG if (post.isHidden() || !post.canLike()) return;
     if (post.isHidden() || !post.canReactTo()) return;
