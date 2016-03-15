@@ -13,8 +13,8 @@ System.register('jordanjay29/reactions/addReaction', ['flarum/extend', 'flarum/a
       SelectDropdown = _flarumComponentsSelectDropdown['default'];
     }, function (_flarumComponentsCommentPost) {
       CommentPost = _flarumComponentsCommentPost['default'];
-    }, function (_flarumUtilsItemsList) {
-      ItemsList = _flarumUtilsItemsList['default'];
+    }, function (_flarumUtilsItemList) {
+      ItemsList = _flarumUtilsItemList['default'];
     }],
     execute: function () {
       _export('default', function () {
