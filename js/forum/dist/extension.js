@@ -30,6 +30,7 @@ System.register('jordanjay29/reactions/addReaction', ['flarum/extend', 'flarum/a
           });
 
           var reactions = ['Like', 'Smile', 'Frown'];
+          //app.translator.trans(isReactedTo ? 'flarum-likes.forum.post.unlike_link' : 'flarum-likes.forum.post.like_link')
 
           //#DEBUG items.add('like',
           // items.add('reaction',
@@ -50,7 +51,7 @@ System.register('jordanjay29/reactions/addReaction', ['flarum/extend', 'flarum/a
               menuClassName: 'Dropdown Dropdown-menu',
               icon: 'smile-o',
               label: 'React' },
-            reactions.map(function (reaction) {
+            reactions.map(function (reactions) {
               return m(
                 'p',
                 null,

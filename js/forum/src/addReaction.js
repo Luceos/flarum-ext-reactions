@@ -16,6 +16,7 @@ export default function() {
     let isReactedTo = app.session.user && post.reactions().some(user => user === app.session.user);
 
     const reactions = ['Like','Smile','Frown'];
+    //app.translator.trans(isReactedTo ? 'flarum-likes.forum.post.unlike_link' : 'flarum-likes.forum.post.like_link')
 
     //#DEBUG items.add('like',
     // items.add('reaction',
@@ -35,7 +36,7 @@ export default function() {
         menuClassName='Dropdown Dropdown-menu'
         icon='smile-o'
         label='React'>
-        {reactions.map(reaction => <p>reaction</p>)}
+        {reactions.map(reactions => <p>reaction</p>)}
       </SelectDropdown>
     );
       // Button.component({
