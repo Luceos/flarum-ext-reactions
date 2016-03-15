@@ -20,7 +20,6 @@ System.register('jordanjay29/reactions/addReaction', ['flarum/extend', 'flarum/a
       _export('default', function () {
         extend(CommentPost.prototype, 'actionItems', function (items) {
           var post = this.props.post;
-          var reactions = new ItemList();
 
           //#DEBUG if (post.isHidden() || !post.canLike()) return;
           if (post.isHidden() || !post.canReactTo()) return;
@@ -30,11 +29,11 @@ System.register('jordanjay29/reactions/addReaction', ['flarum/extend', 'flarum/a
             return user === app.session.user;
           });
 
-          reactions.add('like', app.translator.trans(isReactedTo ? 'flarum-likes.forum.post.unlike_link' : 'flarum-likes.forum.post.like_link'));
+          var reactions = [app.translator.trans(isReactedTo ? 'flarum-likes.forum.post.unlike_link' : 'flarum-likes.forum.post.like_link')];
 
           //#DEBUG items.add('like',
           items.add('reaction', SelectDropdown.component({
-            children: reactions.toArray(),
+            children: this.reactions,
             className: 'Button Button--link',
             buttonClassName: 'Button Button--link',
             menuClassName: 'Dropdown Dropdown-menu',

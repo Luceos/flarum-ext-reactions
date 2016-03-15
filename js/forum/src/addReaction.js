@@ -8,7 +8,6 @@ import ItemList from 'flarum/utils/ItemList';
 export default function() {
   extend(CommentPost.prototype, 'actionItems', function(items) {
     const post = this.props.post;
-    const reactions = new ItemList();
 
     //#DEBUG if (post.isHidden() || !post.canLike()) return;
     if (post.isHidden() || !post.canReactTo()) return;
@@ -16,16 +15,12 @@ export default function() {
     //#DEBUG let isLiked = app.session.user && post.likes().some(user => user === app.session.user);
     let isReactedTo = app.session.user && post.reactions().some(user => user === app.session.user);
 
-    reactions.add('like',
-      app.translator.trans(
-        isReactedTo ? 'flarum-likes.forum.post.unlike_link' : 'flarum-likes.forum.post.like_link'
-      )
-    );
+    const reactions = [app.translator.trans(isReactedTo ? 'flarum-likes.forum.post.unlike_link' : 'flarum-likes.forum.post.like_link')];
 
     //#DEBUG items.add('like',
     items.add('reaction',
       SelectDropdown.component({
-        children: reactions.toArray(),
+        children: this.reactions,
         className: 'Button Button--link',
         buttonClassName: 'Button Button--link',
         menuClassName: 'Dropdown Dropdown-menu',
