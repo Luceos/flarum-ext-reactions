@@ -17,7 +17,7 @@ export default function() {
     //#DEBUG items.add('like',
     items.add('reaction',
       SelectDropdown.component({
-        children: array(app.translator.trans(isReactedTo ? 'flarum-likes.forum.post.unlike_link' : 'flarum-likes.forum.post.like_link')),
+        children: new array(app.translator.trans(isReactedTo ? 'flarum-likes.forum.post.unlike_link' : 'flarum-likes.forum.post.like_link')),
         className: 'Button Button--link',
         buttonClassName: 'Button Button--link',
         menuClassName: 'Dropdown Dropdown-menu',
